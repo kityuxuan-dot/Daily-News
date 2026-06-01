@@ -22,7 +22,7 @@ RSS_FEEDS = [
     "",
     "",
 ]
-ARTICLES_PER_SOURCE = 10
+ARTICLES_PER_SOURCE = 3
 
 telegram_bot = Bot(token=TELEGRAM_TOKEN)
 client = OpenAI(api_key=DEEPSEEK_API_KEY, base_url="https://api.deepseek.com/v1")
@@ -40,8 +40,8 @@ def fetch_news_from_feed(feed_url):
 
 def summarize_article(article_text):
     try:
-        response = groq_client.chat.completions.create(
-            model="deepseek-chat",
+        response = client.chat.completions.create(
+            model="deepseek-chat",  # or "deepseek-v4-flash" for free tier
             messages=[
                 {"role": "system", "content": "Summarize the news in 2-3 short Chinese sentences."},
                 {"role": "user", "content": f"News: {article_text}"}
