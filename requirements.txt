@@ -1,3 +1,3 @@
 feedparser
-groq
+openai
 python-telegram-bot

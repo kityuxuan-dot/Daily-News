@@ -2,16 +2,16 @@ import feedparser
 import asyncio
 import os
 from datetime import datetime
-from groq import Groq
+from openai import OpenAI
 from telegram import Bot
 
 # Read from GitHub Secrets (environment variables)
 TELEGRAM_TOKEN = os.environ.get("TELEGRAM_TOKEN")
-GROQ_API_KEY = os.environ.get("GROQ_API_KEY")
+DEEPSEEK_API_KEY = os.environ.get("DEEPSEEK_API_KEY")
 CHAT_IDS = os.environ.get("CHAT_IDS", "").split(",")
 
-if not TELEGRAM_TOKEN or not GROQ_API_KEY or not CHAT_IDS or CHAT_IDS == [""]:
-    raise Exception("Missing required environment variables: TELEGRAM_TOKEN, GROQ_API_KEY, CHAT_IDS")
+if not TELEGRAM_TOKEN or not DEEPSEEK_API_KEY or not CHAT_IDS or CHAT_IDS == [""]:
+    raise Exception("Missing required environment variables: TELEGRAM_TOKEN, DEEPSEEK_API_KEY, CHAT_IDS")
 
 # RSS feeds (Chinese and international)
 RSS_FEEDS = [
@@ -25,7 +25,7 @@ RSS_FEEDS = [
 ARTICLES_PER_SOURCE = 10
 
 telegram_bot = Bot(token=TELEGRAM_TOKEN)
-groq_client = Groq(api_key=GROQ_API_KEY)
+client = OpenAI(api_key=DEEPSEEK_API_KEY, base_url="https://api.deepseek.com/v1")
 
 def fetch_news_from_feed(feed_url):
     feed = feedparser.parse(feed_url)
@@ -41,7 +41,7 @@ def fetch_news_from_feed(feed_url):
 def summarize_article(article_text):
     try:
         response = groq_client.chat.completions.create(
-            model="llama-3.3-70b-versatile",
+            model="deepseek-chat",
             messages=[
                 {"role": "system", "content": "Summarize the news in 2-3 short Chinese sentences."},
                 {"role": "user", "content": f"News: {article_text}"}
