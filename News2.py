@@ -22,7 +22,7 @@ RSS_FEEDS = [
     "",
     "",
 ]
-ARTICLES_PER_SOURCE = 3
+ARTICLES_PER_SOURCE = 5
 
 telegram_bot = Bot(token=TELEGRAM_TOKEN)
 client = OpenAI(api_key=DEEPSEEK_API_KEY, base_url="https://api.deepseek.com/v1")
