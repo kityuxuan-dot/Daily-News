@@ -13,16 +13,21 @@ CHAT_IDS = os.environ.get("CHAT_IDS", "").split(",")
 if not TELEGRAM_TOKEN or not DEEPSEEK_API_KEY or not CHAT_IDS or CHAT_IDS == [""]:
     raise Exception("Missing required environment variables: TELEGRAM_TOKEN, DEEPSEEK_API_KEY, CHAT_IDS")
 
-# RSS feeds (Chinese and international)
+# Your RSS feeds
 RSS_FEEDS = [
-    "https://rss.dw.com/xml/rss-chi-all",
-    "https://feeds.bbci.co.uk/news/world/rss.xml",
-    "https://feeds.a.dj.com/rss/RSSMarketsMain.xml",
-    "",
-    "",
-    "",
+    "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=10001147",
+    "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=100003114",
+    "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=10000664",
+    "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=15839069",
+    "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=19206666",
+    "https://www.channelnewsasia.com/api/v1/rss-outbound-feed?_format=xml",
+    "https://www.channelnewsasia.com/api/v1/rss-outbound-feed?_format=xml&category=6511",
+    "https://www.channelnewsasia.com/api/v1/rss-outbound-feed?_format=xml&category=6936",
+    "https://www.channelnewsasia.com/api/v1/rss-outbound-feed?_format=xml&category=6311",
+    "https://www.channelnewsasia.com/api/v1/rss-outbound-feed?_format=xml&category=679471",
 ]
-ARTICLES_PER_SOURCE = 5
+
+ARTICLES_PER_SOURCE = 3
 
 telegram_bot = Bot(token=TELEGRAM_TOKEN)
 client = OpenAI(api_key=DEEPSEEK_API_KEY, base_url="https://api.deepseek.com/v1")
