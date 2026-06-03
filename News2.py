@@ -10,9 +10,6 @@ TELEGRAM_TOKEN = os.environ.get("TELEGRAM_TOKEN")
 DEEPSEEK_API_KEY = os.environ.get("DEEPSEEK_API_KEY")
 CHAT_IDS = os.environ.get("CHAT_IDS", "").split(",")
 
-if not TELEGRAM_TOKEN or not DEEPSEEK_API_KEY or not CHAT_IDS or CHAT_IDS == [""]:
-    raise Exception("Missing required environment variables: TELEGRAM_TOKEN, DEEPSEEK_API_KEY, CHAT_IDS")
-
 # Your RSS feeds
 RSS_FEEDS = [
     "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=10001147",
