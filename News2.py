@@ -46,12 +46,12 @@ def fetch_news_from_feed(feed_url):
 def summarize_article(article_text):
     try:
         response = client.chat.completions.create(
-            model="deepseek-chat",  # or "deepseek-v4-flash" for free tier
+            model="deepseek-v4-flash",
             messages=[
                 {"role": "system", "content": "Summarize the news in 2-3 short Chinese sentences."},
                 {"role": "user", "content": f"News: {article_text}"}
             ],
-            max_tokens=200,
+            max_tokens=5000,
             temperature=0.3
         )
         return response.choices[0].message.content.strip()
