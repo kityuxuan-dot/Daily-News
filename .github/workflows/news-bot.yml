@@ -2,7 +2,7 @@ name: Daily News Bot
 
 on:
   schedule:
-    - cron: '03 30 * * *'   # replace with your chosen minutes and hour (UTC)
+    - cron: '04 30 * * *'   # replace with your chosen minutes and hour (UTC)
   workflow_dispatch:
 
 jobs:
